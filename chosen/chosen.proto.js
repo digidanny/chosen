@@ -124,6 +124,7 @@ Copyright (c) 2011 by Harvest
       };
       this.active_field = false;
       this.mouse_on_container = false;
+      this.pending_destroy_click = false;
       this.results_showing = false;
       this.result_highlighted = null;
       this.result_single_selected = null;
@@ -153,7 +154,7 @@ Copyright (c) 2011 by Harvest
 
     AbstractChosen.prototype.input_blur = function(evt) {
       var _this = this;
-      if (!this.mouse_on_container) {
+      if (!this.mouse_on_container || this.pending_destroy_click) {
         this.active_field = false;
         return setTimeout((function() {
           return _this.blur_test();
